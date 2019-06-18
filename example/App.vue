@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="center">
-      <!--directive></directive-->
-      <img src="./assets/vue-lazyload-text.png" style="margin-bottom: -209px">
-      <h2>vue-lazyload-text</h2>
+      <img src="./assets/vue-lazyload-text.png" style="width: 600px; height:500px" >
+      <h1 style="margin-bottom: 60px">vue-lazyload-text</h1>
+      <h2>Start Line: {{startLine}}   End Line:{{endLine}} </h2>
     </div>
     <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" @getScope="textScope"></lazy-text>
   </div>
@@ -11,8 +11,8 @@
 
 <script>
 
-  import LazyText from './demo/lazytext'
-  import directive from './demo/directive'
+  // import directive from './demo/directive'
+  import LazyText from 'vue-lazyload-text-dev/src/components/lazy-text'
 
   import server from './lib/api'
 
@@ -20,7 +20,7 @@
     name: 'app',
     components: {
       LazyText,
-      directive,
+      //directive,
     },
     data() {
       return {
@@ -29,7 +29,9 @@
         intervalLine: 50,
         isStop: false,
         demo: '',
-        separator: ' '
+        separator: ' ',
+        startLine: 0,
+        endLine: 0
       }
     },
     mounted() {
@@ -46,6 +48,8 @@
             .then(res => {
               let response = this.mockHandleServer(a, b, this.separator, res)
               this.demo = response
+              this.startLine = a
+              this.endLine = b
               if (!response) {
                 this.isStop = true
               }
