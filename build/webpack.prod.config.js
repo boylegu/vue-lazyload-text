@@ -25,7 +25,7 @@ const webpackConfig = merge(commonConfig, {
 
     output: {
         path: resolve('example/dist'),
-        publicPath: '../dist',
+        publicPath: '',
         filename: 'js/[name].bundle.js',
         chunkFilename: 'js/[id].chunk.js'
     },
