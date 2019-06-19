@@ -7,74 +7,88 @@
 //
 //
 //
+//
+//
 
 var script = {
-    name: 'LazyText',
-    props: {
-        src: {
-            type: String,
-            required: true
-        },
-        intervalLine: {
-            type: Number,
-            default: 10
-        },
-        defer: {
-            type: Number,
-            default: 2000
-        },
-        separator: {
-            type: String,
-            default: '\n'
-        }
+  name: 'LazyText',
+  props: {
+    src: {
+      type: String,
+      required: true
     },
-    data: function () { return (
-        {
-            observer: null,
-            intersected: false,
-            templates: [],
-            startLine: 0,
-        }); },
-    methods: {
-        calcScope: function calcScope(n, counter) {
-            var lines = this.src.split(this.separator);
-            var startLine = this.startLine;
-            var endLine = n + this.startLine;
-            console.log(2, startLine, endLine);
-            this.$emit('getScope', startLine, endLine);
-            // let scope = lines.slice(startLine, endLine)
-            this.startLine += n;
-            if (lines.toString() === this.templates.toString()) {
-                this.templates = lines;
-            } else {
-                for (var i$1 = 0, list = lines; i$1 < list.length; i$1 += 1) {
-                    var i = list[i$1];
-
-                    this.templates.push(i);
-                }
-            }
-        }
+    intervalLine: {
+      type: Number,
+      default: 10
     },
-    mounted: function mounted() {
-        var self = this;
-        setTimeout(function () {
-            var counter = 0;
-            var loadLines = (function (n) {
-                self.calcScope(n, counter);
-            });
-            self.observer = new IntersectionObserver(function (entries) {
-                if (entries[0].intersectionRatio <= 0) {
-                    return;
-                }
-                loadLines(self.intervalLine);
-                loadLines(self.intervalLine);
-            });
-            self.observer.observe(self.$refs.lazyText);
-        }, self.defer);
+    defer: {
+      type: Number,
+      default: 2000
     },
-    destroyed: function destroyed() {
-        this.observer.disconnect();
+    separator: {
+      type: String,
+      default: '\n'
+    },
+    bgColor: {
+      type: String,
+      required: false,
+      default: 'rgba(0, 150, 0, 0.75)'
+    },
+  },
+  data: function () { return (
+    {
+      observer: null,
+      intersected: false,
+      templates: [],
+      startLine: 0,
+    }); },
+  computed: {
+    getBgColor: function getBgColor() {
+      return {
+        backgroundImage: ("radial-gradient(" + (this.bgColor) + ", black 120%)")
+      }
     }
+  },
+  methods: {
+    calcScope: function calcScope(n, counter) {
+      var lines = this.src.split(this.separator);
+      var startLine = this.startLine;
+      var endLine = n + this.startLine;
+      console.log(2, startLine, endLine);
+      this.$emit('getScope', startLine, endLine);
+      // let scope = lines.slice(startLine, endLine)
+      this.startLine += n;
+      if (lines.toString() === this.templates.toString()) {
+        this.templates = lines;
+      } else {
+        for (var i$1 = 0, list = lines; i$1 < list.length; i$1 += 1) {
+          var i = list[i$1];
+
+          this.templates.push(i);
+        }
+      }
+    }
+  },
+  mounted: function mounted() {
+    var self = this;
+    setTimeout(function () {
+      var counter = 0;
+      var loadLines = (function (n) {
+        self.calcScope(n, counter);
+      });
+      self.observer = new IntersectionObserver(function (entries) {
+        if (entries[0].intersectionRatio <= 0) {
+          return;
+        }
+        loadLines(self.intervalLine);
+        loadLines(self.intervalLine);
+      });
+      self.observer.observe(self.$refs.lazyText);
+    }, self.defer);
+  },
+  destroyed: function destroyed() {
+    this.observer.disconnect();
+  }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
 /* server only */
 , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -212,19 +226,19 @@ var server = createInjectorSSR;/* script */
 var __vue_script__ = script;
 
 /* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"terminal"},[_vm._ssrNode("<output class=\"sentinel\">"+(_vm._ssrList((_vm.templates),function(template){return ("<div>"+_vm._ssrEscape(_vm._s(template))+"</div>")}))+"</output> <div><output class=\"sentinel\"></output></div>")])};
+var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"terminal",style:(_vm.getBgColor)},[_vm._ssrNode("<output class=\"sentinel\">"+(_vm._ssrList((_vm.templates),function(template){return ("<div>"+_vm._ssrEscape(_vm._s(template))+"</div>")}))+"</output> <div><output class=\"sentinel\"></output></div>")])};
 var __vue_staticRenderFns__ = [];
 
   /* style */
   var __vue_inject_styles__ = function (inject) {
     if (!inject) { return }
-    inject("data-v-3e0b4940_0", { source: ".terminal[data-v-3e0b4940]{background-color:#000;background-image:radial-gradient(rgba(0,150,0,.75),#000 120%);height:70vh;margin:0;overflow:auto;padding:2rem;color:#fff;font:1.3rem Inconsolata,monospace;text-shadow:0 0 5px #c8c8c8}[data-v-3e0b4940]::selection{background:#0080ff;text-shadow:none}pre[data-v-3e0b4940]{white-space:pre-wrap;word-wrap:break-word}", map: undefined, media: undefined });
+    inject("data-v-73fdabd0_0", { source: ".terminal[data-v-73fdabd0]{background-color:#000;background-image:radial-gradient(rgba(0,150,0,.75),#000 120%);height:70vh;margin:0;overflow:auto;padding:2rem;color:#fff;font:1.3rem Inconsolata,monospace;text-shadow:0 0 5px #c8c8c8}[data-v-73fdabd0]::selection{background:#0080ff;text-shadow:none}pre[data-v-73fdabd0]{white-space:pre-wrap;word-wrap:break-word}", map: undefined, media: undefined });
 
   };
   /* scoped */
-  var __vue_scope_id__ = "data-v-3e0b4940";
+  var __vue_scope_id__ = "data-v-73fdabd0";
   /* module identifier */
-  var __vue_module_identifier__ = "data-v-3e0b4940";
+  var __vue_module_identifier__ = "data-v-73fdabd0";
   /* functional template */
   var __vue_is_functional_template__ = false;
 

@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <div class="center">
-      <img src="./assets/vue-lazyload-text.png" style="width: 600px; height:500px" >
-      <h1 style="margin-bottom: 60px">vue-lazyload-text</h1>
-      <h2>Start Line: {{startLine}}   End Line:{{endLine}} </h2>
+      <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
+      <h1 style="margin-bottom: 60px;color: azure;">vue-lazyload-text</h1>
+      <h2 style="color: azure;">Start Line: {{startLine}} End Line:{{endLine}} </h2>
     </div>
-    <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" @getScope="textScope"></lazy-text>
+    <div style="margin:0 auto; width: 700px; height:200px">
+      <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" :bgColor="bgColor"
+                 @getScope="textScope"></lazy-text>
+    </div>
   </div>
 </template>
 
 <script>
 
   // import directive from './demo/directive'
+  // import LazyText from './demo/lazytext'
   import LazyText from 'vue-lazyload-text-dev/src/components/lazy-text'
 
   import server from './lib/api'
@@ -24,6 +28,7 @@
     },
     data() {
       return {
+        bgColor: 'rgba(0, 1, 0, 0.34)',
         left: 0,
         right: 50,
         intervalLine: 50,
@@ -39,7 +44,6 @@
         .then(res => {
           this.demo = this.mockHandleServer(this.left, this.right, this.separator, res)
         })
-      // this.demo = "172.16.217.240\\r\\n=============\\r\\ngivenchy: stopped\\r\\ngivenchy\\r\\nDockerfile\\r\\nGopkg.lock\\r\\nGopkg.toml\\r\\nMakefile\\r\\nREADME.md\\r\\nbackend/.python-version\\r\\nbackend/Dockerfile\\r\\nbackend/Makefile\\r\\nbackend/README.md\\r\\nbackend/celerybeat-schedule\\r\\nbackend/cmdb.sql\\r\\nbackend/coco.ini\\r\\nbackend/deploy/__init__.py\\r\\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\\r\\nbackend/deploy/__pycache__/admin.cpython-36.pyc\\r\\nbackend/deploy/__pycache__/base.cpython-36.pyc\\r\\nbackend/deploy/__pycache__/urls.cpython-36.pyc\\r\\nbackend/deploy/__pycache__/utils.cpython-36.pyc\\r\\nbackend/deploy/admin.py\\r\\nbackend/deploy/apps.py\\r\\nbackend/deploy/base.py\\r\\nbackend/deploy/core/__init__.py\\r\\nbackend/deploy/migrations/0001_initial.py\\r\\nbackend/\\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n172.16.217.240\n=============\ngivenchy: stopped\ngivenchy\nDockerfile\nGopkg.lock\nGopkg.toml\nMakefile\nREADME.md\nbackend/.python-version\nbackend/Dockerfile\nbackend/Makefile\nbackend/README.md\nbackend/celerybeat-schedule\nbackend/cmdb.sql\nbackend/coco.ini\nbackend/deploy/__init__.py\nbackend/deploy/__pycache__/__init__.cpython-36.pyc\nbackend/deploy/__pycache__/admin.cpython-36.pyc\nbackend/deploy/__pycache__/base.cpython-36.pyc\nbackend/deploy/__pycache__/urls.cpython-36.pyc\nbackend/deploy/__pycache__/utils.cpython-36.pyc\nbackend/deploy/admin.py\nbackend/deploy/apps.py\nbackend/deploy/base.py\nbackend/deploy/core/__init__.py\nbackend/deploy/migrations/0001_initial.py\nbackend/\n"
     },
     methods: {
       textScope(a, b) {
@@ -66,6 +70,9 @@
 </script>
 
 <style lang="scss">
+  body {
+    background-color: #4b6178;
+  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -82,6 +89,9 @@
       top: 0;
       bottom: 0;
       margin: auto;
+      h1 h2{
+        color: azure;
+      }
     }
 
   }
