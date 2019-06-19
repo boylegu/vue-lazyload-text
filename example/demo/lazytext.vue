@@ -1,6 +1,6 @@
 <template>
-  <div class="terminal">
-      <output class="sentinel" ref="lazyText">
+  <div class="terminal" :style="getBgColor">
+    <output class="sentinel" ref="lazyText">
           <div v-text="template" v-for="template in templates"></div>
       </output>
       <div><output class="sentinel" ref="lazyText"></output></div>
@@ -26,7 +26,12 @@
       separator: {
         type: String,
         default: '\n'
-      }
+      },
+      bgColor: {
+        type: String,
+        required: false,
+        default: 'rgba(0, 150, 0, 0.75)'
+      },
     },
     data: () => (
       {
@@ -35,6 +40,13 @@
         templates: [],
         startLine: 0,
       }),
+    computed: {
+      getBgColor() {
+        return {
+          backgroundImage: `radial-gradient(${this.bgColor}, black 120%)`
+        }
+      }
+    },
     methods: {
       calcScope(n, counter) {
         const lines = this.src.split(this.separator);
@@ -84,7 +96,7 @@
     background-color: black;
     background-image: radial-gradient(
         rgba(0, 150, 0, 0.75), black 120%
-    );
+     );
     height: 70vh;
     margin: 0;
     overflow: auto;
