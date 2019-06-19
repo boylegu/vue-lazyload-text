@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <div class="center">
-      <img src="./assets/vue-lazyload-text.png" style="width: 600px; height:500px" >
-      <h1 style="margin-bottom: 60px">vue-lazyload-text</h1>
-      <h2>Start Line: {{startLine}}   End Line:{{endLine}} </h2>
+      <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
+      <h1 style="margin-bottom: 60px;color: azure;">vue-lazyload-text</h1>
+      <h2 style="color: azure;">Start Line: {{startLine}} End Line:{{endLine}} </h2>
     </div>
-    <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" :bgColor="bgColor" @getScope="textScope"></lazy-text>
+    <div style="margin:0 auto; width: 700px; height:200px">
+      <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" :bgColor="bgColor"
+                 @getScope="textScope"></lazy-text>
+    </div>
   </div>
 </template>
 
@@ -67,6 +70,9 @@
 </script>
 
 <style lang="scss">
+  body {
+    background-color: #4b6178;
+  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -83,6 +89,9 @@
       top: 0;
       bottom: 0;
       margin: auto;
+      h1 h2{
+        color: azure;
+      }
     }
 
   }
