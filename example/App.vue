@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <div class="center">
       <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
@@ -9,6 +10,8 @@
       <lazy-text :src="demo" :separator="separator" :intervalLine="intervalLine" :bgColor="bgColor"
                  @getScope="textScope"></lazy-text>
     </div>
+    <sketch :value="colors" @input="updateValue"></sketch>
+
   </div>
 </template>
 
@@ -16,6 +19,7 @@
 
   // import directive from './demo/directive'
   // import LazyText from './demo/lazytext'
+  import {Sketch} from 'vue-color'
   import LazyText from 'vue-lazyload-text-dev/src/components/lazy-text'
 
   import server from './lib/api'
@@ -23,7 +27,9 @@
   export default {
     name: 'app',
     components: {
+      Sketch,
       LazyText,
+      'material-picker': Sketch,
       //directive,
     },
     data() {
@@ -36,7 +42,8 @@
         demo: '',
         separator: ' ',
         startLine: 0,
-        endLine: 0
+        endLine: 0,
+        colors: ''
       }
     },
     mounted() {
@@ -60,6 +67,11 @@
             })
         }
       },
+      updateValue(val) {
+        let rgba = val.rgba
+        let result = `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`
+        this.bgColor = result
+      },
       mockHandleServer(left, right, separator, data) {
         let mockSourceData = data.split(separator)
         let ScopeData = mockSourceData.slice(left, right)
@@ -70,9 +82,6 @@
 </script>
 
 <style lang="scss">
-  body {
-    background-color: #4b6178;
-  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -81,7 +90,6 @@
     color: #2c3e50;
     padding: 10px;
     padding-top: 5px;
-
     .center {
       text-align: center;
       left: 0;
@@ -89,12 +97,8 @@
       top: 0;
       bottom: 0;
       margin: auto;
-      h1 h2{
-        color: azure;
-      }
     }
 
   }
-
 
 </style>
