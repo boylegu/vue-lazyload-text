@@ -12,7 +12,7 @@ function resolve(dir) {
 }
 
 function assetsPath(_path) {
-    const assetsSubDirectory = '/static'
+    const assetsSubDirectory = 'static'
 
     return path.posix.join(assetsSubDirectory, _path)
 }

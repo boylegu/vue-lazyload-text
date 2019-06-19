@@ -3,6 +3,7 @@
   <div id="app">
     <div class="center">
       <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
+
       <h1 style="margin-bottom: 60px;color: azure;">vue-lazyload-text</h1>
       <h2 style="color: azure;">Start Line: {{startLine}} End Line:{{endLine}} </h2>
     </div>

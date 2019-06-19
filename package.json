@@ -27,7 +27,8 @@
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "build:demo": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress "
+    "build:demo": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
+    "gh": "cross-env NODE_ENV=production webpack --config ./build/webpack.gh.config.js --progress && node build/deploy"
   },
   "dependencies": {},
   "devDependencies": {
@@ -40,6 +41,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "file-loader": "^4.0.0",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.7.0",
     "minimist": "^1.2.0",
