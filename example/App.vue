@@ -2,6 +2,7 @@
 
   <div id="app">
     <div class="center">
+      <directive></directive>
       <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
 
       <h1 style="margin-bottom: 60px;color: azure;">vue-lazyload-text</h1>
@@ -18,7 +19,7 @@
 
 <script>
 
-  // import directive from './demo/directive'
+  import directive from './demo/directive'
   // import LazyText from './demo/lazytext'
   import {Sketch} from 'vue-color'
   import LazyText from 'vue-lazyload-text-dev/src/components/lazy-text'
@@ -31,7 +32,7 @@
       Sketch,
       LazyText,
       'material-picker': Sketch,
-      //directive,
+      directive,
     },
     data() {
       return {

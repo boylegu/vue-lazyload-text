@@ -1,6 +1,6 @@
 {
   "name": "vue-lazyload-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Boyle Gu<gubaoer@hotmail.com>",
   "description": "The high performance magic text with lazyload support.",
   "keywords": [
@@ -43,6 +43,7 @@
     "file-loader": "^4.0.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.7.0",
     "minimist": "^1.2.0",
     "mockjs": "^1.0.1-beta3",
