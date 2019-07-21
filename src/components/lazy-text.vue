@@ -54,7 +54,6 @@
         const lines = this.src.split(this.separator);
         const startLine = this.startLine
         const endLine = n + this.startLine
-        console.log(2, startLine, endLine)
         this.$emit('getScope', startLine, endLine)
         // let scope = lines.slice(startLine, endLine)
         this.startLine += n
@@ -80,7 +79,7 @@
             return;
           }
           loadLines(self.intervalLine);
-          loadLines(self.intervalLine);
+          //loadLines(self.intervalLine);
         });
         self.observer.observe(self.$refs.lazyText);
       }, self.defer);
