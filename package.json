@@ -1,6 +1,6 @@
 {
-  "name": "vue-lazyload-text",
-  "version": "1.0.1",
+  "name": "vue-lazyload-text-dev",
+  "version": "0.0.4-beats",
   "author": "Boyle Gu<gubaoer@hotmail.com>",
   "description": "The high performance magic text with lazyload support.",
   "keywords": [
@@ -23,6 +23,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --progress",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
