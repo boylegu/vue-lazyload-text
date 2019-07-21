@@ -4,7 +4,7 @@
     <div class="center">
       <img src="./assets/vue-lazyload-text.png" style="width: 500px; height:400px">
 
-      <h1 style="margin-bottom: 30px;color: azure;">vue-lazyload-text</h1>
+      <h1 style="margin-bottom: 30px;color: azure;"><a class="title" href="https://github.com/boylegu/vue-lazyload-text">vue-lazyload-text</a></h1>
 
       <div><h2>Usage of in different way: </h2>
         <h2>
@@ -27,6 +27,10 @@
 </script>
 
 <style lang="scss">
+  .title:link{color:white;text-decoration:none}
+  .title:visited{color:wheat;text-decoration:none}
+  a:link{color:white;}
+  a:visited{color:wheat;}
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
