@@ -54,7 +54,6 @@ var script = {
       var lines = this.src.split(this.separator);
       var startLine = this.startLine;
       var endLine = n + this.startLine;
-      console.log(2, startLine, endLine);
       this.$emit('getScope', startLine, endLine);
       // let scope = lines.slice(startLine, endLine)
       this.startLine += n;
@@ -81,7 +80,7 @@ var script = {
           return;
         }
         loadLines(self.intervalLine);
-        loadLines(self.intervalLine);
+        //loadLines(self.intervalLine);
       });
       self.observer.observe(self.$refs.lazyText);
     }, self.defer);
@@ -232,13 +231,13 @@ var __vue_staticRenderFns__ = [];
   /* style */
   var __vue_inject_styles__ = function (inject) {
     if (!inject) { return }
-    inject("data-v-73fdabd0_0", { source: ".terminal[data-v-73fdabd0]{background-color:#000;background-image:radial-gradient(rgba(0,150,0,.75),#000 120%);height:70vh;margin:0;overflow:auto;padding:2rem;color:#fff;font:1.3rem Inconsolata,monospace;text-shadow:0 0 5px #c8c8c8}[data-v-73fdabd0]::selection{background:#0080ff;text-shadow:none}pre[data-v-73fdabd0]{white-space:pre-wrap;word-wrap:break-word}", map: undefined, media: undefined });
+    inject("data-v-4a4040ea_0", { source: ".terminal[data-v-4a4040ea]{background-color:#000;background-image:radial-gradient(rgba(0,150,0,.75),#000 120%);height:70vh;margin:0;overflow:auto;padding:2rem;color:#fff;font:1.3rem Inconsolata,monospace;text-shadow:0 0 5px #c8c8c8}[data-v-4a4040ea]::selection{background:#0080ff;text-shadow:none}pre[data-v-4a4040ea]{white-space:pre-wrap;word-wrap:break-word}", map: undefined, media: undefined });
 
   };
   /* scoped */
-  var __vue_scope_id__ = "data-v-73fdabd0";
+  var __vue_scope_id__ = "data-v-4a4040ea";
   /* module identifier */
-  var __vue_module_identifier__ = "data-v-73fdabd0";
+  var __vue_module_identifier__ = "data-v-4a4040ea";
   /* functional template */
   var __vue_is_functional_template__ = false;
 
@@ -252,24 +251,72 @@ var __vue_staticRenderFns__ = [];
     __vue_module_identifier__,
     undefined,
     server
-  );/* eslint-disable import/prefer-default-export */var components = /*#__PURE__*/Object.freeze({LazyText: lazyText});// Import vue components
+  );/* eslint-disable import/prefer-default-export */var components = /*#__PURE__*/Object.freeze({LazyText: lazyText});var startLine = 0;
+var counter = 0;
+var addEventsListen = function (vnode, name, data) {
+  var handlers = (vnode.data && vnode.data.on) ||
+    (vnode.componentOptions && vnode.componentOptions.listeners);
+  if (handlers && handlers[name]) {
+    handlers[name].fns(data);
+  }
+};
 
-// install function executed by Vue.use()
+function calcScope(n, counter, src, separator, vnode) {
+  var separatorValue = separator ? separator : '\n';
+  var lines = src.split(separatorValue);
+  var endLine = n + startLine;
+  addEventsListen(vnode, 'getScope', {start: startLine, end: endLine});
+  startLine += n;
+  var scroller = vnode.elm;
+  for (var i$1 = 0, list = lines; i$1 < list.length; i$1 += 1) {
+    var i = list[i$1];
+
+    var newItem = document.createElement('div');
+    newItem.textContent = i;
+    scroller.appendChild(newItem);
+  }
+
+}
+
+var lazyloadText = {
+
+  bind: function bind(el, binding, vnode) {
+    var intervalValue = binding.value.intervalLine;
+    var intervalLine = intervalValue ? intervalValue : 10;
+    var src = binding.value.src;
+    var lastChildren = vnode.children;
+    var scroller = vnode.elm;
+    var sentinel = lastChildren[lastChildren.length - 1].elm;
+    var loadLines = (function (n) {
+      calcScope(n, counter, src, binding.value.separator, vnode);
+    });
+    var intersectionObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].intersectionRatio <= 0) {
+        return;
+      }
+      loadLines(intervalLine);
+      scroller.appendChild(sentinel);
+      loadLines(intervalLine);
+    });
+    intersectionObserver.observe(sentinel);
+  },
+  update: function update(ele, binding, vnode, oldVnode) {
+  }
+};// Import vue components
+
 function install(Vue) {
   if (install.installed) { return; }
   install.installed = true;
   Object.keys(components).forEach(function (componentName) {
     Vue.component(componentName, components[componentName]);
   });
+  Vue.directive('lazyload-text', lazyloadText);
 }
 
-// Create module definition for Vue.use()
 var plugin = {
   install: install,
 };
 
-// To auto-install when vue is found
-/* global window global */
 var GlobalVue = null;
 if (typeof window !== 'undefined') {
   GlobalVue = window.Vue;
