@@ -3,7 +3,7 @@
 [![MIT](https://img.shields.io/badge/license-MIT-ff69b4.svg)]()
 
 <p align="center">
-  <a href ="##"><img alt="lazyload_text" src="https://github.com/boylegu/vue-lazyload-text/blob/master/example/assets/vue-lazyload-text.png?raw=true"></a></p>
+  <a href ="##"><img width="460" height="350"  alt="lazyload_text" src="https://github.com/boylegu/vue-lazyload-text/blob/master/example/assets/vue-lazyload-text.png?raw=true"></a></p>
 
 
 # vue-lazyload-text
@@ -15,13 +15,38 @@ The vue-lazyload-text offer better performents, especially in comparison with Sc
 ## Online Demo
 [DEMO](https://boylegu.github.io/vue-lazyload-text)
 
+
+## Installation
+
+`npm install --save vue-lazyload-text`
+
+    
+    // main.js
+    import VueLazyload from 'vue-lazyload-text'
+    Vue.use(VueLazyload)
+
+
 ## Usage
  
 - Compoment
 
   Example : 
   
-      <lazy-text :src="your text" @getScope="Function"></lazy-text>
+      <template>
+          ......
+          <lazy-text :src="your text" @getScope="Function"></lazy-text>
+          ......
+      </template>
+      
+      <script>
+        import LazyText from 'vue-lazyload-text-dev/src/components/lazy-text'
+      
+        export default {
+          name: "compoment",
+          components: {
+            LazyText,
+          },
+        }
   
   Props
   
